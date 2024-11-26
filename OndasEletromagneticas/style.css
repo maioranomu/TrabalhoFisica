@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Manter as duas primeiras imagens juntas */
+.imagem-ondas,
+.imagem-frequencias {
+    margin-bottom: 20px;
+}
+
+.img-ondas, .img-frequencias {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para as ondas e suas informações */
+.ondas-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 100px; /* Aumentado para muito mais distância entre as ondas */
+    gap: 20px;
+    padding: 10px;
+    min-height: 80vh; /* Altura mínima para cada seção da onda */
+    scroll-snap-align: start; /* Alinhamento ao rolar */
+}
+
+.ondas-info img {
+    width: 300px;
+    height: auto;
+}
+
+.ondas-info .info {
+    max-width: 600px;
+    color: #333;
+    background-color: rgba(240, 244, 248, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.ondas-info .info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.ondas-info .info p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+/* Imagens das ondas de rádio, microondas, etc. */
+.radio img, .microondas img, .infravermelho img, .visivel img, .ultravioleta img, .raiosx img, .raiosgama img {
+    width: 300px;
+}
+
+/* Manter o efeito de visibilidade nas imagens de uso */
+.imagem-ondas {
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.container:hover .imagem-ondas {
+    opacity: 1;
+}
+
+/* Scroll snapping */
+html {
+    scroll-behavior: smooth; /* Adiciona suavidade ao rolar */
+}
+
+body {
+    overflow-y: scroll; /* Permitir rolagem vertical */
+}
+.ondas-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.background{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #436BA9,#436BA9, #FDBA45, #FF4036, #fff, #B7AAB4, #DF67C1, #4F1470);
+}
+.microondas{
+    margin-top: 700px;
+}
+.visivel{
+    margin-top: 500px;
+}
+.raiosx{
+    margin-top: 200px;
+}
+.infravermelho{
+    margin-top: 500px;
+}

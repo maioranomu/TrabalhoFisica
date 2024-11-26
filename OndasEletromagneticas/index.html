@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ondas Eletromagnéticas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .button {
+            display: block; /* Altera para block para centralizar corretamente */
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Cor verde */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 20px auto; /* Alinha o botão no centro horizontalmente */
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="imagem-ondas">
+            <img src="images/ondas_usos.png" alt="Ondas Usos" class="img-ondas">
+        </div>
+        <div class="imagem-frequencias">
+            <img src="images/frequencias.png" alt="Frequências" class="img-frequencias">
+        </div>
+    </div>
+    
+    <a href="info.html" class="button">Ir para Informações</a>
+
+    <script>
+        const container = document.querySelector('.container');
+        const ondasDiv = document.querySelector('.imagem-ondas');
+        let isLocked = false;
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isLocked) {
+                const containerRect = container.getBoundingClientRect();
+                const mouseX = e.clientX - containerRect.left;
+                const percentageX = (mouseX / containerRect.width) * 100;
+                ondasDiv.style.clipPath = `inset(0 ${100 - percentageX}% 0 0)`;
+            }
+        });
+
+        container.addEventListener('click', (e) => {
+            const containerRect = container.getBoundingClientRect();
+            const mouseX = e.clientX - containerRect.left;
+            const percentageX = (mouseX / containerRect.width) * 100;
+            ondasDiv.style.clipPath = `inset(0 ${100 - percentageX}% 0 0)`;
+            isLocked = !isLocked;
+        });
+    </script>
+</body>
+
+</html>

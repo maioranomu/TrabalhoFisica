@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ondas Eletromagnéticas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        .top-bar {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            margin-top: 50px; /* Deixa espaço para a faixa */
+        }
+
+        .ondas-info img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .ondas-info img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal estilos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: white;
+            color: black;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            margin: 15px 0;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <a href="index.html">Voltar para a Página Inicial</a>
+    </div>
+
+    <div class="container">
+        <!-- Onda de Rádio -->
+        <div class="ondas-info">
+            <img src="images/radio.png" alt="Onda de Rádio" onclick="showInfo('radio')">
+        </div>
+
+        <!-- Microondas -->
+        <div class="ondas-info">
+            <img src="images/microondas.png" alt="Microondas" onclick="showInfo('microondas')">
+        </div>
+
+        <!-- Infravermelho -->
+        <div class="ondas-info">
+            <img src="images/infravermelho.png" alt="Infravermelho" onclick="showInfo('infravermelho')">
+        </div>
+
+        <!-- Luz Visível -->
+        <div class="ondas-info">
+            <img src="images/visivel.png" alt="Luz Visível" onclick="showInfo('visivel')">
+        </div>
+
+        <!-- Ultravioleta -->
+        <div class="ondas-info">
+            <img src="images/ultravioleta.png" alt="Ultravioleta" onclick="showInfo('ultravioleta')">
+        </div>
+
+        <!-- Raios X -->
+        <div class="ondas-info">
+            <img src="images/raiosx.png" alt="Raios X" onclick="showInfo('raiosx')">
+        </div>
+
+        <!-- Raios Gama -->
+        <div class="ondas-info">
+            <img src="images/raiosgama.png" alt="Raios Gama" onclick="showInfo('raiosgama')">
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            radio: `
+                <img src="images/radio.png" alt="Onda de Rádio">
+                <h3>Onda de Rádio</h3>
+                <p>As ondas de rádio são usadas para comunicações de longa distância...</p>
+                <p>Frequência: <strong>3 Hz a 300 GHz</strong></p>
+                <p>Comprimento da Onda: <strong>10 km a 1 mm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <img src="images/torre_radio.png" alt="Torre de Rádio">
+            `,
+            microondas: `
+                <img src="images/microondas.png" alt="Microondas">
+                <h3>Microondas</h3>
+                <p>Microondas são usadas principalmente em comunicações sem fio...</p>
+                <p>Frequência: <strong>300 MHz a 300 GHz</strong></p>
+                <p>exposição excessiva pode causar queimaduras solares e câncer de pele)</strong></p>
+                <p>Ionizante: <strong>Ionizante</strong></p>
+                <img src="images/sol.png" alt="Sol">
+            `,
+            raiosx: `
+                <img src="images/raiosx.png" alt="Raios X">
+                <h3>Raios X</h3>
+                <p>Raios X são usados principalmente em exames de imagem médica...</p>
+                <p>Frequência: <strong>30 PHz a 30 EHz</strong></p>
+                <p>Comprimento da Onda: <strong>10 nm a 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Alto (exposição excessiva pode causar câncer e outros danos à saúde)</strong></p>
+                <p>Ionizante: <strong>Ionizante</strong></p>
+                <img src="images/radiografia.png" alt="Radiografia">
+            `,
+            raiosgama: `
+                <img src="images/raiosgama.png" alt="Raios Gama">
+                <h3>Raios Gama</h3>
+                <p>Os raios gama são usados no tratamento de câncer...</p>
+                <p>Frequência: <strong>Acima de 30 EHz</strong></p>
+                <p>Comprimento da Onda: <strong>Menos de 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Muito Alto (exposição pode ser fatal)</strong></p>
+                <p>Ionizante: <strong>Ionizante</strong></p>
+                <img src="images/cancer_tratamento.png" alt="Tratamento de Câncer">
+            `
+        };
+        function showInfo(type) {
+            const modal = document.getElementById('infoModal');
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = data[type];
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Fechar o modal ao clicar fora
+        window.onclick = function (event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -43,20 +43,24 @@
         const ondasDiv = document.querySelector('.imagem-ondas');
         let isLocked = false;
 
+        // Função para calcular a porcentagem corretamente
+        function updateClipPath(mouseX, containerWidth) {
+            const percentageX = (mouseX / containerWidth) * 100;
+            return `inset(0 ${100 - percentageX}% 0 0)`;
+        }
+
         container.addEventListener('mousemove', (e) => {
             if (!isLocked) {
                 const containerRect = container.getBoundingClientRect();
                 const mouseX = e.clientX - containerRect.left;
-                const percentageX = (mouseX / containerRect.width) * 100;
-                ondasDiv.style.clipPath = `inset(0 ${100 - percentageX}% 0 0)`;
+                ondasDiv.style.clipPath = updateClipPath(mouseX, containerRect.width);
             }
         });
 
         container.addEventListener('click', (e) => {
             const containerRect = container.getBoundingClientRect();
             const mouseX = e.clientX - containerRect.left;
-            const percentageX = (mouseX / containerRect.width) * 100;
-            ondasDiv.style.clipPath = `inset(0 ${100 - percentageX}% 0 0)`;
+            ondasDiv.style.clipPath = updateClipPath(mouseX, containerRect.width);
             isLocked = !isLocked;
         });
     </script>

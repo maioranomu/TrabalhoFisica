@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -151,7 +151,7 @@
 
     <script>
         const data = {
-            radio: `
+            radio: `  
                 <img src="images/radio.png" alt="Onda de Rádio">
                 <h3>Onda de Rádio</h3>
                 <p>As ondas de rádio são usadas para comunicações de longa distância...</p>
@@ -161,14 +161,36 @@
                 <p>Ionizante: <strong>Não Ionizante</strong></p>
                 <img src="images/torre_radio.png" alt="Torre de Rádio">
             `,
-            microondas: `
+            microondas: ` 
                 <img src="images/microondas.png" alt="Microondas">
                 <h3>Microondas</h3>
                 <p>Microondas são usadas principalmente em comunicações sem fio...</p>
                 <p>Frequência: <strong>300 MHz a 300 GHz</strong></p>
                 <p>exposição excessiva pode causar queimaduras solares e câncer de pele)</strong></p>
-                <p>Ionizante: <strong>Ionizante</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
                 <img src="images/sol.png" alt="Sol">
+            `,
+            infravermelho: `
+                <img src="images/infravermelho.png" alt="Infravermelho">
+                <h3>Infravermelho</h3>
+                <p>O infravermelho é usado para controle remoto e câmeras térmicas...</p>
+                <p>Frequência: <strong>300 GHz a 430 THz</strong></p>
+                <p>Comprimento da Onda: <strong>1 mm a 700 nm</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+            `,
+            visivel: `
+                <img src="images/visivel.png" alt="Luz Visível">
+                <h3>Luz Visível</h3>
+                <p>A luz visível é a parte do espectro de luz que pode ser detectada pelos nossos olhos...</p>
+                <p>Frequência: <strong>430 THz a 770 THz</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+            `,
+            ultravioleta: `
+                <img src="images/ultravioleta.png" alt="Ultravioleta">
+                <h3>Ultravioleta</h3>
+                <p>Usada para esterilização e terapias, a radiação ultravioleta pode ser perigosa...</p>
+                <p>Frequência: <strong>750 THz a 30 PHz</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
             `,
             raiosx: `
                 <img src="images/raiosx.png" alt="Raios X">
@@ -176,26 +198,26 @@
                 <p>Raios X são usados principalmente em exames de imagem médica...</p>
                 <p>Frequência: <strong>30 PHz a 30 EHz</strong></p>
                 <p>Comprimento da Onda: <strong>10 nm a 0.01 nm</strong></p>
-                <p>Risco à Saúde: <strong>Alto (exposição excessiva pode causar câncer e outros danos à saúde)</strong></p>
                 <p>Ionizante: <strong>Ionizante</strong></p>
-                <img src="images/radiografia.png" alt="Radiografia">
             `,
             raiosgama: `
                 <img src="images/raiosgama.png" alt="Raios Gama">
                 <h3>Raios Gama</h3>
                 <p>Os raios gama são usados no tratamento de câncer...</p>
                 <p>Frequência: <strong>Acima de 30 EHz</strong></p>
-                <p>Comprimento da Onda: <strong>Menos de 0.01 nm</strong></p>
-                <p>Risco à Saúde: <strong>Muito Alto (exposição pode ser fatal)</strong></p>
                 <p>Ionizante: <strong>Ionizante</strong></p>
-                <img src="images/cancer_tratamento.png" alt="Tratamento de Câncer">
             `
         };
+
         function showInfo(type) {
-            const modal = document.getElementById('infoModal');
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = data[type];
-            modal.style.display = 'block';
+            if (data[type]) {
+                const modal = document.getElementById('infoModal');
+                const modalContent = document.getElementById('modalContent');
+                modalContent.innerHTML = data[type];
+                modal.style.display = 'block';
+            } else {
+                console.error('Informações não encontradas para a chave:', type);
+            }
         }
 
         function closeModal() {

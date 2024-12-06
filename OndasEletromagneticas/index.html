@@ -5,64 +5,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondas Eletromagnéticas</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .button {
-            display: block; /* Altera para block para centralizar corretamente */
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Cor verde */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            margin: 20px auto; /* Alinha o botão no centro horizontalmente */
-        }
-
-        .button:hover {
-            background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+    <div class="top-bar">
+        <h1>Ondas Eletromagnéticas</h1>
+    </div>
+
     <div class="container">
-        <div class="imagem-ondas">
-            <img src="images/ondas_usos.png" alt="Ondas Usos" class="img-ondas">
+        <!-- Onda de Rádio -->
+        <div class="ondas-info">
+            <img src="images/radio.png" alt="Onda de Rádio" onclick="showInfo('radio')">
         </div>
-        <div class="imagem-frequencias">
-            <img src="images/frequencias.png" alt="Frequências" class="img-frequencias">
+
+        <!-- Microondas -->
+        <div class="ondas-info">
+            <img src="images/microondas.png" alt="Microondas" onclick="showInfo('microondas')">
+        </div>
+
+        <!-- Infravermelho -->
+        <div class="ondas-info">
+            <img src="images/infravermelho.png" alt="Infravermelho" onclick="showInfo('infravermelho')">
+        </div>
+
+        <!-- Luz Visível -->
+        <div class="ondas-info">
+            <img src="images/visivel.png" alt="Luz Visível" onclick="showInfo('visivel')">
+        </div>
+
+        <!-- Ultravioleta -->
+        <div class="ondas-info">
+            <img src="images/ultravioleta.png" alt="Ultravioleta" onclick="showInfo('ultravioleta')">
+        </div>
+
+        <!-- Raios X -->
+        <div class="ondas-info">
+            <img src="images/raiosx.png" alt="Raios X" onclick="showInfo('raiosx')">
+        </div>
+
+        <!-- Raios Gama -->
+        <div class="ondas-info">
+            <img src="images/raiosgama.png" alt="Raios Gama" onclick="showInfo('raiosgama')">
+        </div>
+        <div class="info">
+            <img src="images/question.png" alt="" onclick="showInfo('info')">
         </div>
     </div>
-    
-    <a href="info.html" class="button">Ir para Informações</a>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
     <script>
-        const container = document.querySelector('.container');
-        const ondasDiv = document.querySelector('.imagem-ondas');
-        let isLocked = false;
+        const data = {
+            radio: `  
+                <img src="images/radio.png" alt="Onda de Rádio">
+                <h3>Onda de Rádio</h3>
+                <p>As ondas de rádio possuem a menor energia no espectro eletromagnético. Elas são utilizadas em comunicações de longa distância, como rádio, televisão e telefonia móvel.</p>
+                <p>Na saúde, são seguras quando usadas corretamente, como em ressonâncias magnéticas (MRI), onde auxiliam na geração de imagens sem causar danos ao corpo.</p>
+                <p>Frequência: <strong>3 Hz a 300 GHz</strong></p>
+                <p>Comprimento da Onda: <strong>10 km a 1 mm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <img src="images/torre_radio.png" alt="Torre de Rádio">
+                <h3>Aplicações:</h3>
+                <img src="images/tv.jpg" alt="Torre de Rádio">
+                <img src="images/ressonacia1.jpg" alt="exame Ressonancia">
+                <img src="images/ressonncia2.jpg" alt="exame foto da resonancia">
+            `,
+            microondas: ` 
+                <img src="images/microondas.png" alt="Microondas">
+                <h3>Microondas</h3>
+                <p>As microondas são utilizadas em telecomunicações, fornos micro-ondas e radares. Elas aquecem moléculas de água e são seguras em níveis controlados.</p>
+                <p>Na saúde, são usadas em terapias específicas e diagnósticos médicos. No entanto, a exposição excessiva pode causar danos térmicos, como queimaduras.</p>
+                <p>Frequência: <strong>300 MHz a 300 GHz</strong></p>
+                <p>Comprimento da Onda: <strong>1 mm a 1 m</strong></p>
+                <p>Risco à Saúde: <strong>Médio (exposição excessiva pode causar queimaduras)</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/micro-ondas.jpg" alt="micro-ondas">
+                <img src="images/wifi.jpg" alt="wifi">
+                <img src="images/ablacao.jpg" alt="ablacao">
+            `,
+            infravermelho: `
+                <img src="images/infravermelho.png" alt="Infravermelho">
+                <h3>Infravermelho</h3>
+                <p>O infravermelho é usado em controles remotos, câmeras térmicas e tratamentos médicos, como alívio da dor muscular e promoção da circulação sanguínea.</p>
+                <p>A exposição prolongada pode causar aquecimento excessivo da pele, mas não é considerada perigosa em usos normais.</p>
+                <p>Frequência: <strong>300 GHz a 430 THz</strong></p>
+                <p>Comprimento da Onda: <strong>1 mm a 700 nm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/controle.jpg" alt="controle">
+                <img src="images/termometro.jpg" alt="termometro">
+                <img src="images/termo.jpg" alt="termografia">
+            `,
+            visivel: `
+                <img src="images/visivel.png" alt="Luz Visível">
+                <h3>Luz Visível</h3>
+                <p>A luz visível é essencial para a visão humana e é usada em diversas aplicações médicas, como fototerapia para icterícia neonatal.</p>
+                <p>Exposição excessiva à luz brilhante pode causar danos à retina, mas normalmente não apresenta grandes riscos.</p>
+                <p>Frequência: <strong>430 THz a 770 THz</strong></p>
+                <p>Comprimento da Onda: <strong>700 nm a 400 nm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
+                <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/lampada.jpg" alt="lampada">
+                <img src="images/camera.jpg" alt="camera">
+                <img src="images/oft.jpg" alt="oftalmo">
+            `,
+            ultravioleta: `
+                <img src="images/ultravioleta.png" alt="Ultravioleta">
+                <h3>Ultravioleta</h3>
+                <p>A radiação ultravioleta (UV) é usada para esterilização e produção de vitamina D no corpo. No entanto, pode causar danos, como queimaduras solares e aumento do risco de câncer de pele.</p>
+                <p>Em medicina, é usada em tratamentos dermatológicos, mas deve ser controlada para evitar riscos.</p>
+                <p>Frequência: <strong>750 THz a 30 PHz</strong></p>
+                <p>Comprimento da Onda: <strong>400 nm a 10 nm</strong></p>
+                <p>Risco à Saúde: <strong>Alto em exposições prolongadas</strong></p>
+                <p>Ionizante: <strong>Parcialmente Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/pintura.jpg" alt="pintura">
+                <img src="images/lamp_uv.jpg" alt="lampada">
+                <img src="images/fot-terapia.jpg" alt="fototerapia">
+            `,
+            raiosx: `
+                <img src="images/raiosx.png" alt="Raios X">
+                <h3>Raios X</h3>
+                <p>Raios X são amplamente utilizados na área da saúde, especialmente em diagnósticos por imagem, como radiografias e tomografias computadorizadas.</p>
+                <p>A exposição deve ser limitada, pois pode causar danos ao DNA e aumentar o risco de câncer.</p>
+                <p>Frequência: <strong>30 PHz a 30 EHz</strong></p>
+                <p>Comprimento da Onda: <strong>10 nm a 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Alto</strong></p>
+                <p>Ionizante: <strong>Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/radi.jpg" alt="radiografia">
+                <img src="images/aero.png" alt="aero porto">
 
-        // Função para calcular a porcentagem corretamente
-        function updateClipPath(mouseX, containerWidth) {
-            const percentageX = (mouseX / containerWidth) * 100;
-            return `inset(0 ${100 - percentageX}% 0 0)`;
+            `,
+            raiosgama: `
+                <img src="images/raiosgama.png" alt="Raios Gama">
+                <h3>Raios Gama</h3>
+                <p>Os raios gama são usados no tratamento de câncer (radioterapia) e na esterilização de equipamentos médicos devido ao seu alto poder de penetração.</p>
+                <p>Podem ser extremamente perigosos em altas doses, causando danos severos às células.</p>
+                <p>Frequência: <strong>Acima de 30 EHz</strong></p>
+                <p>Comprimento da Onda: <strong>Menor que 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Extremamente Alto</strong></p>
+                <p>Ionizante: <strong>Ionizante</strong></p>
+                <h3>Aplicações:</h3>
+                <img src="images/radioterapia.jpg" alt="radioterapia">
+                <img src="images/armas.jpg" alt="radioterapia">
+            `,
+            info: `
+            <div style="background-color: #f4f4f4; padding: 20px; margin: 20px auto; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h2 style="text-align: center; color: #333;">Termos Importantes sobre Ondas Eletromagnéticas</h2>
+
+                <h3 style="color: #333;">Frequência das Ondas</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    A frequência de uma onda refere-se ao número de ciclos que ela completa em um segundo, medido em Hertz (Hz). Por exemplo, uma onda com frequência de 1 Hz completa um ciclo por segundo.
+                </p>
+
+                <h3 style="color: #333;">Unidades de Medida</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    As ondas são frequentemente medidas em termos de frequência (Hertz) e comprimento de onda (metros). Por exemplo:
+                    <ul style="list-style: disc; padding-left: 20px; color: #555;">
+                        <li><strong>Hz</strong>: Ciclos por segundo.</li>
+                        <li><strong>Comprimento de onda</strong>: Distância entre dois picos consecutivos de uma onda.</li>
+                    </ul>
+                </p>
+
+                <h3 style="color: #333;">Como se Propagam</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Ondas eletromagnéticas não precisam de um meio material para se propagar. Elas se movem através do espaço em velocidade constante (aproximadamente 300.000 km/s no vácuo), combinando campos elétricos e magnéticos oscilantes.
+                </p>
+
+                <h3 style="color: #333;">Ionizante e Não Ionizante</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Uma onda é considerada ionizante se tiver energia suficiente para remover elétrons de átomos ou moléculas, criando íons. Exemplos incluem raios-X e raios gama. Ondas não ionizantes, como ondas de rádio e micro-ondas, não têm energia suficiente para ionizar a matéria.
+                </p>
+
+                <h3 style="color: #333;">Espectro Eletromagnético</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    O espectro eletromagnético cobre uma ampla faixa de frequências, desde ondas de rádio (baixa frequência) até raios gama (alta frequência). Cada tipo de onda tem diferentes aplicações e características.
+                </p>
+
+                <h3 style="color: #333;">Velocidade da Luz</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Todas as ondas eletromagnéticas viajam à mesma velocidade no vácuo: 299.792.458 m/s, conhecida como a velocidade da luz.
+                </p>
+
+                <h3 style="color: #333;">Interação com a Matéria</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Ondas interagem com a matéria de formas diferentes, como absorção, reflexão, refração e difração. Por exemplo, a luz visível pode ser refratada em um prisma para criar um arco-íris.
+                </p>
+
+                <h3 style="color: #333;">Efeitos no DNA e na Saúde</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Ondas ionizantes, como raios-X e raios gama, possuem energia suficiente para causar alterações no DNA das células. Essas alterações podem levar a mutações genéticas, que, por sua vez, aumentam o risco de desenvolvimento de câncer. As mutações ocorrem porque a radiação pode quebrar as ligações químicas no DNA, alterando sua estrutura.
+                </p>
+                <p style="color: #555; line-height: 1.6;">
+                    A exposição excessiva a radiações ionizantes é especialmente perigosa, pois pode:
+                    <ul style="list-style: disc; padding-left: 20px; color: #555;">
+                        <li>Desencadear cânceres como leucemia, câncer de pele e outros tipos dependendo da área exposta.</li>
+                        <li>Causar alterações genéticas que podem ser transmitidas às gerações futuras.</li>
+                        <li>Danificar células de tecidos sensíveis, como a medula óssea, o que pode afetar a produção de células sanguíneas.</li>
+                    </ul>
+                </p>
+
+                <h3 style="color: #333;">Radiação Não Ionizante e Saúde</h3>
+                <p style="color: #555; line-height: 1.6;">
+                    Ondas não ionizantes, como micro-ondas e luz visível, geralmente não têm energia suficiente para causar danos diretos ao DNA. No entanto, exposição prolongada ou intensa pode causar outros efeitos, como:
+                    <ul style="list-style: disc; padding-left: 20px; color: #555;">
+                        <li><strong>Aquecimento dos tecidos:</strong> Micro-ondas podem causar aquecimento excessivo, como em fornos micro-ondas.</li>
+                        <li><strong>Danos oculares:</strong> Luz visível intensa ou raios ultravioleta podem danificar os olhos, levando à catarata.</li>
+                    </ul>
+                </p>
+            </div>
+            `
+        };
+
+        function showInfo(type) {
+            if (data[type]) {
+                const modal = document.getElementById('infoModal');
+                const modalContent = document.getElementById('modalContent');
+                modalContent.innerHTML = data[type];
+                modal.style.display = 'block';
+            } else {
+                console.error('Informações não encontradas para a chave:', type);
+            }
         }
 
-        container.addEventListener('mousemove', (e) => {
-            if (!isLocked) {
-                const containerRect = container.getBoundingClientRect();
-                const mouseX = e.clientX - containerRect.left;
-                ondasDiv.style.clipPath = updateClipPath(mouseX, containerRect.width);
-            }
-        });
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
 
-        container.addEventListener('click', (e) => {
-            const containerRect = container.getBoundingClientRect();
-            const mouseX = e.clientX - containerRect.left;
-            ondasDiv.style.clipPath = updateClipPath(mouseX, containerRect.width);
-            isLocked = !isLocked;
-        });
+        // Fechar o modal ao clicar fora
+        window.onclick = function (event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
     </script>
 </body>
 

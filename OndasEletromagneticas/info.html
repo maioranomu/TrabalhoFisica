@@ -151,64 +151,95 @@
 
     <script>
         const data = {
-            radio: `  
+            radio: `
                 <img src="images/radio.png" alt="Onda de Rádio">
                 <h3>Onda de Rádio</h3>
-                <p>As ondas de rádio são usadas para comunicações de longa distância...</p>
+                <p>As ondas de rádio possuem a menor energia no espectro eletromagnético. Elas são utilizadas em comunicações de longa distância, como rádio, televisão e telefonia móvel.</p>
+                <p>Na saúde, são seguras quando usadas corretamente, como em ressonâncias magnéticas (MRI), onde auxiliam na geração de imagens sem causar danos ao corpo.</p>
                 <p>Frequência: <strong>3 Hz a 300 GHz</strong></p>
                 <p>Comprimento da Onda: <strong>10 km a 1 mm</strong></p>
                 <p>Risco à Saúde: <strong>Baixo</strong></p>
                 <p>Ionizante: <strong>Não Ionizante</strong></p>
-                <img src="images/torre_radio.png" alt="Torre de Rádio">
+                <img src="images/exemplos/torre_radio.png" alt="">
+                <h1>Ressonancia Magnética:<h1>
+                <img src="images/exemplos/radio.png" alt="">
             `,
-            microondas: ` 
+            microondas: `
                 <img src="images/microondas.png" alt="Microondas">
                 <h3>Microondas</h3>
-                <p>Microondas são usadas principalmente em comunicações sem fio...</p>
+                <p>As microondas são utilizadas em telecomunicações, fornos micro-ondas e radares. Elas aquecem moléculas de água e são seguras em níveis controlados.</p>
+                <p>Na saúde, são usadas em terapias específicas e diagnósticos médicos. No entanto, a exposição excessiva pode causar danos térmicos, como queimaduras.</p>
                 <p>Frequência: <strong>300 MHz a 300 GHz</strong></p>
-                <p>exposição excessiva pode causar queimaduras solares e câncer de pele)</strong></p>
+                <p>Comprimento da Onda: <strong>1 mm a 1 m</strong></p>
+                <p>Risco à Saúde: <strong>Médio (exposição excessiva pode causar queimaduras)</strong></p>
                 <p>Ionizante: <strong>Não Ionizante</strong></p>
-                <img src="images/sol.png" alt="Sol">
+                <img src="images/exemplos/forno_microondas.png" alt="">
             `,
             infravermelho: `
                 <img src="images/infravermelho.png" alt="Infravermelho">
                 <h3>Infravermelho</h3>
-                <p>O infravermelho é usado para controle remoto e câmeras térmicas...</p>
+                <p>O infravermelho é usado em controles remotos, câmeras térmicas e tratamentos médicos, como alívio da dor muscular e promoção da circulação sanguínea.</p>
+                <p>A exposição prolongada pode causar aquecimento excessivo da pele, mas não é considerada perigosa em usos normais.</p>
                 <p>Frequência: <strong>300 GHz a 430 THz</strong></p>
                 <p>Comprimento da Onda: <strong>1 mm a 700 nm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
                 <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <img src="images/exemplos/camera_infravermelha.png" alt="">
+                <h1>Cameras térmicas para diagnóstico:<h1>
+                <img src="images/exemplos/infravermelho.jpg" alt="">
             `,
             visivel: `
                 <img src="images/visivel.png" alt="Luz Visível">
                 <h3>Luz Visível</h3>
-                <p>A luz visível é a parte do espectro de luz que pode ser detectada pelos nossos olhos...</p>
+                <p>A luz visível é essencial para a visão humana e é usada em diversas aplicações médicas, como fototerapia para icterícia neonatal.</p>
+                <p>Exposição excessiva à luz brilhante pode causar danos à retina, mas normalmente não apresenta grandes riscos.</p>
                 <p>Frequência: <strong>430 THz a 770 THz</strong></p>
+                <p>Comprimento da Onda: <strong>700 nm a 400 nm</strong></p>
+                <p>Risco à Saúde: <strong>Baixo</strong></p>
                 <p>Ionizante: <strong>Não Ionizante</strong></p>
+                <img src="images/exemplos/arco_iris.png" alt="">
+                <h1>Fototerapia:<h1>
+                <img src="images/exemplos/visivel.jpg" alt="">
             `,
             ultravioleta: `
                 <img src="images/ultravioleta.png" alt="Ultravioleta">
                 <h3>Ultravioleta</h3>
-                <p>Usada para esterilização e terapias, a radiação ultravioleta pode ser perigosa...</p>
+                <p>A radiação ultravioleta (UV) é usada para esterilização e produção de vitamina D no corpo. No entanto, pode causar danos, como queimaduras solares e aumento do risco de câncer de pele.</p>
+                <p>Em medicina, é usada em tratamentos dermatológicos, mas deve ser controlada para evitar riscos.</p>
                 <p>Frequência: <strong>750 THz a 30 PHz</strong></p>
-                <p>Ionizante: <strong>Não Ionizante</strong></p>
-            `,
-            raiosx: `
+                <p>Comprimento da Onda: <strong>400 nm a 10 nm</strong></p>
+                <p>Risco à Saúde: <strong>Alto em exposições prolongadas</strong></p>
+                <p>Ionizante: <strong>Parcialmente Ionizante</strong></p>
+                <img src="images/exemplos/sol.png" alt="">
+                `,
+                raiosx: `
                 <img src="images/raiosx.png" alt="Raios X">
                 <h3>Raios X</h3>
-                <p>Raios X são usados principalmente em exames de imagem médica...</p>
+                <p>Raios X são amplamente utilizados na área da saúde, especialmente em diagnósticos por imagem, como radiografias e tomografias computadorizadas.</p>
+                <p>A exposição deve ser limitada, pois pode causar danos ao DNA e aumentar o risco de câncer.</p>
                 <p>Frequência: <strong>30 PHz a 30 EHz</strong></p>
                 <p>Comprimento da Onda: <strong>10 nm a 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Alto</strong></p>
                 <p>Ionizante: <strong>Ionizante</strong></p>
+                <img src="images/exemplos/radiografia.png" alt="">
+                <h1>Radiografia:<h1>
+                <img src="images/exemplos/x.png" alt="">
             `,
             raiosgama: `
                 <img src="images/raiosgama.png" alt="Raios Gama">
                 <h3>Raios Gama</h3>
-                <p>Os raios gama são usados no tratamento de câncer...</p>
+                <p>Os raios gama são usados no tratamento de câncer (radioterapia) e na esterilização de equipamentos médicos devido ao seu alto poder de penetração.</p>
+                <p>Podem ser extremamente perigosos em altas doses, causando danos severos às células.</p>
                 <p>Frequência: <strong>Acima de 30 EHz</strong></p>
+                <p>Comprimento da Onda: <strong>Menor que 0.01 nm</strong></p>
+                <p>Risco à Saúde: <strong>Extremamente Alto</strong></p>
                 <p>Ionizante: <strong>Ionizante</strong></p>
+                <img src="images/exemplos/cancer_tratamento.png" alt="">
+                <h1>Tratamento de cancer:<h1>
+                <img src="images/exemplos/x.png" alt="">
             `
         };
-
+        
         function showInfo(type) {
             if (data[type]) {
                 const modal = document.getElementById('infoModal');
